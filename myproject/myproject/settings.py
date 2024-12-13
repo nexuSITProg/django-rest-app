@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-c7vu3ickw-zch4_i1x8ng@iuv7ominvt=_+fz0rxz@ofhevd+#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # Добавьте хосты, с которых разрешены запросы
 
@@ -33,7 +33,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tutoring_db',   # Имя вашей базы данных
         'USER': 'root',       # Ваше имя пользователя MySQL
-        'PASSWORD': '',       # Пароль для пользователя root
+        'PASSWORD': '1234',       # Пароль для пользователя root
         'HOST': '127.0.0.1',  # Хост базы данных (локально: localhost или 127.0.0.1)
         'PORT': '3306',       # Порт MySQL (по умолчанию 3306)
     }

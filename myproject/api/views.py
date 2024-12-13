@@ -1,33 +1,31 @@
 # tutors/views.py
 
-from django.http import JsonResponse
-from .models import Tutor, Schedule
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Tutor, Schedule, Subject
+from .serializers import TutorSerializer, ScheduleSerializer, SubjectSerializer
 
-def tutor_schedule(request):
-    # Получаем всех репетиторов
-    tutors = Tutor.objects.all().select_related('subject')
-    response_data = []
+class TutorListCreateView(ListCreateAPIView):
+    queryset = Tutor.objects.all()
+    serializer_class = TutorSerializer
 
-    for tutor in tutors:
-        # Получаем расписание для каждого репетитора, используя его идентификатор
-        tutor_schedules = Schedule.objects.filter(tutor_id=tutor.tutor_id)
+class TutorDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Tutor.objects.all()
+    serializer_class = TutorSerializer
 
-        schedule_list = [
-            {
-                'day': schedule.day_of_week,
-                'time': f'{schedule.start_time.strftime("%H:%M")}-{schedule.end_time.strftime("%H:%M")}',
-            } for schedule in tutor_schedules
-        ]
+class ScheduleListCreateView(ListCreateAPIView):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
 
-        tutor_data = {
-            'name': tutor.name,
-            'surname': tutor.last_name,
-            'experience': tutor.experience,
-            'schedule': schedule_list,
-            'phone': tutor.phone,
-            'bio': tutor.bio,
-            'subject': tutor.subject.subject_name if tutor.subject else None  # Добавляем предмет, если он есть
-        }
-        response_data.append(tutor_data)
+class ScheduleDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
 
-    return JsonResponse(response_data, safe=False)
+class SubjectListCreateView(ListCreateAPIView):
+    queryset = Subject.objects.all()
+    serializer_class = SubjectSerializer
+
+class SubjectDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Subject.objects.all()
+    serializer_class = SubjectSerializer
