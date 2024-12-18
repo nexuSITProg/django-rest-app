@@ -1,5 +1,3 @@
-# tutors/urls.py
-
 from django.urls import path
 from .views import (
     TutorListCreateView,
@@ -7,7 +5,9 @@ from .views import (
     ScheduleListCreateView,
     ScheduleDetailView,
     SubjectListCreateView,
-    SubjectDetailView
+    SubjectDetailView,
+    RecordsListCreateView, 
+    RecordsDetailView        
 )
 
 urlpatterns = [
@@ -17,4 +17,6 @@ urlpatterns = [
     path('api/schedules/<int:pk>/', ScheduleDetailView.as_view(), name='schedule-detail'),
     path('api/subjects/', SubjectListCreateView.as_view(), name='subject-list-create'),
     path('api/subjects/<str:pk>/', SubjectDetailView.as_view(), name='subject-detail'),
+    path('api/records/', RecordsListCreateView.as_view(), name='records-list-create'), 
+    path('api/records/<int:pk>/', RecordsDetailView.as_view(), name='records-detail') 
 ]

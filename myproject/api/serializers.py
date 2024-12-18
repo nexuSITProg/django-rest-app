@@ -1,7 +1,7 @@
 # tutors/serializers.py
 
 from rest_framework import serializers
-from .models import Tutor, Schedule, Subject
+from .models import Tutor, Schedule, Subject, Records
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +25,9 @@ class TutorSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'subject': {'read_only': True}
         }
+
+
+class RecordsSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Records
+        fields = '__all__'

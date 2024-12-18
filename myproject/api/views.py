@@ -3,8 +3,8 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Tutor, Schedule, Subject
-from .serializers import TutorSerializer, ScheduleSerializer, SubjectSerializer
+from .models import Tutor, Schedule, Subject, Records
+from .serializers import TutorSerializer, ScheduleSerializer, SubjectSerializer, RecordsSerializer
 
 class TutorListCreateView(ListCreateAPIView):
     queryset = Tutor.objects.all()
@@ -29,3 +29,12 @@ class SubjectListCreateView(ListCreateAPIView):
 class SubjectDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
+
+
+class RecordsListCreateView(ListCreateAPIView):
+    queryset = Records.objects.all()
+    serializer_class = RecordsSerializer
+
+class RecordsDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Records.objects.all()
+    serializer_class = RecordsSerializer

@@ -52,3 +52,15 @@ class Schedule(models.Model):
 
     def __str__(self):
         return f"{self.tutor.name} {self.day_of_week} {self.start_time}-{self.end_time}"
+    
+
+class Records(models.Model):
+    id = models.AutoField(primary_key=True)
+    fio = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+
+    class Meta: 
+        db_table = 'records'
+
+    def __str__(self):
+        return f"{self.fio} {self.phone}"
