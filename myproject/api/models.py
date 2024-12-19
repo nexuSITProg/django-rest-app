@@ -58,6 +58,7 @@ class Records(models.Model):
     id = models.AutoField(primary_key=True)
     fio = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
+    tutor_id = models.IntegerField()
 
     class Meta: 
         db_table = 'records'
